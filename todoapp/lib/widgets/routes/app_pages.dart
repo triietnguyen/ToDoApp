@@ -3,6 +3,8 @@ import 'package:todoapp/modules/addItem/binding.dart';
 import 'package:todoapp/modules/addItem/view.dart';
 import 'package:todoapp/modules/detailpage/binding.dart';
 import 'package:todoapp/modules/detailpage/view.dart';
+import 'package:todoapp/modules/editpage/binding.dart';
+import 'package:todoapp/modules/editpage/view.dart';
 import 'package:todoapp/modules/home/binding.dart';
 import 'package:todoapp/modules/home/view.dart';
 
@@ -20,13 +22,18 @@ class AppPages {
     ),
     GetPage(
       name: Routes.ADDITEM,
-      page: () => const AddItemPage(),
+      page: () => AddItemPage(),
       binding: AddItemBinding(),
     ),
     GetPage(
       name: Routes.DETAILITEM,
-      page: () => const DetailPage(),
+      page: () => DetailPage(),
       binding: DetailItemBinding(),
+    ),
+    GetPage(
+      name: Routes.EDITITEM,
+      page: () => EditPage(),
+      binding: EditBinding(),
     ),
   ];
 }

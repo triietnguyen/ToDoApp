@@ -8,13 +8,13 @@ class AddWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-        color: Colors.blue, // Background color of the logo
+        color: Color(0xffD9D9D9), // Background color of the logo
         width: 51.0.sp, // Width of the circle
         height: 49.0.sp, // Height of the circle
         child: const Center(
           child: Icon(
-            Icons.star, // Icon inside the circle
-            color: Colors.white, // Color of the icon
+            Icons.add, // Icon inside the circle
+            color: Colors.black, // Color of the icon
             size: 30.0, // Size of the icon
           ),
         ),

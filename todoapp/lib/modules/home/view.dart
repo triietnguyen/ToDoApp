@@ -10,29 +10,27 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Stack(children: [
-        const TabNavigationBarBlock(),
-        Padding(
-          padding: EdgeInsets.only(bottom: 20.sp),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 26.sp),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                        onTap: () => controller.navigateAddItemPage(),
-                        child: AddWidget()),
-                  ],
-                ),
+    return Stack(children: [
+      const TabNavigationBarBlock(),
+      Padding(
+        padding: EdgeInsets.only(bottom: 20.sp),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(right: 26.sp),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                      onTap: () => controller.navigateAddItemPage(),
+                      child: AddWidget()),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ]),
-    );
+      ),
+    ]);
   }
 }

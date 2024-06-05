@@ -1,15 +1,7 @@
 // ignore_for_file: type_annotate_public_apis
-import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:todoapp/data/network/api/dio_exception.dart';
 
 class Api {
-  final tokenDio =
-      Dio(BaseOptions(baseUrl: "https://movies-api14.p.rapidapi.com"));
-  String? userToken;
-  bool isRememberMe = false;
-  bool isLogged = false;
-
   factory Api() => _singleton;
 
   Api._internal();
@@ -30,28 +22,7 @@ class Api {
       ),
     );
 
-    dio.interceptors.addAll({
-      AppInterceptors(
-        dio,
-        customOptions: customOptions,
-        hasToken: hasToken,
-      ),
-      CurlLoggerDioInterceptor(
-        printOnSuccess: true,
-      ),
-    });
     return dio;
-  }
-
-  // ignore: use_setters_to_change_properties
-  void setHeaderToken({String? token, String? refreshToken}) {
-    userToken = token;
-    isLogged = token != null;
-  }
-
-  // ignore: use_setters_to_change_properties, avoid_positional_boolean_parameters
-  void setRememberMe(bool value) {
-    isRememberMe = value;
   }
 
   // Get:-----------------------------------------------------------------------

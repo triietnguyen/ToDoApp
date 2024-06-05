@@ -1,48 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:todoapp/modules/home/blocks/header_block.dart';
-import 'package:todoapp/modules/home/widgets/reactangle_widget.dart';
+import 'package:todoapp/modules/home/controller.dart';
 
-class TabNavigationBarBlock extends StatelessWidget {
+class TabNavigationBarBlock extends GetView<HomeController> {
   const TabNavigationBarBlock({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          bottom: TabBar(
-            labelStyle: TextStyle(
-              fontSize: 18.0.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.white70,
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontSize: 16.0.sp,
-              color: Colors.white54,
-            ),
-            tabs: const [
-              Tab(
-                text: 'All',
-              ),
-              Tab(
-                text: 'Reminder',
-              ),
-              Tab(
-                text: 'Important',
-              ),
-            ],
-          ),
-          title: const HeaderBlock(),
-        ),
-        body: const TabBarView(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           children: [
-            RectangleWidget(),
-            Icon(Icons.directions_transit),
-            Icon(Icons.directions_bike),
+            HeaderBlock(),
+            Padding(
+              padding: EdgeInsets.all(10.sp),
+              child: TextField(
+                controller: controller.searchController,
+                decoration: InputDecoration(
+                  labelText: 'Search',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.search),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Obx(
+                () => ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: controller.items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () => controller.navigateDetailPage(index),
+                      child: Container(
+                        width: 332.sp,
+                        height: 120.sp,
+                        decoration: BoxDecoration(
+                          color: const Color(0xffFFFFFF),
+                          border: Border.all(color: Colors.black, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(bottom: 10.sp),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.items[index].title!,
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20.sp),
+                                ),
+                                Text(
+                                  controller.items[index].description!,
+                                  style: TextStyle(
+                                      color: Colors.black45, fontSize: 20.sp),
+                                ),
+                                Text(
+                                  '${DateFormat.yMMMMEEEEd().format(controller.items[index].time!.toLocal())} \n${DateFormat.Hm().format(controller.items[index].time!.toLocal())}',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20.sp),
+                                ),
+                              ],
+                            ),
+                            const Icon(Icons.label_important)
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

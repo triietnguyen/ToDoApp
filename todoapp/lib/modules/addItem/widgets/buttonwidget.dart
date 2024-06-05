@@ -10,11 +10,10 @@ class ButtonWidget extends GetView<AddItemController> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        controller.navigateToDetailPage();
+        controller.clickButtonSave();
       },
-      child: Text('Save'),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xffF6ECC9),
+        backgroundColor: const Color(0xffF6ECC9),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
           side: BorderSide(
@@ -24,6 +23,7 @@ class ButtonWidget extends GetView<AddItemController> {
         ),
         minimumSize: Size(323.sp, 54.sp), // Kích thước của nút
       ),
+      child: const Text('Save'),
     );
   }
 }

@@ -5,4 +5,5 @@ abstract class Routes {
   static const HOME = '/home';
   static const ADDITEM = '/addItem';
   static const DETAILITEM = '/detailItem';
+  static const EDITITEM = '/editItem';
 }
