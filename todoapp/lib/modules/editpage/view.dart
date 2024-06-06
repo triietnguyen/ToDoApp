@@ -40,10 +40,6 @@ class EditPage extends GetView<EditItemController> {
                   },
                 ),
 
-                TextFormField(
-                  controller: controller.timeController,
-                  decoration: InputDecoration(labelText: 'Time'),
-                ),
                 // Add fields for additionalFields
                 ...controller.additionalFields.entries.map((entry) {
                   return TextFormField(

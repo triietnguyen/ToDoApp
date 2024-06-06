@@ -25,7 +25,7 @@ class EditItemController extends GetxController {
     super.onInit();
     titleController.text = item.title!;
     descriptionController.text = item.description!;
-    importantController.text = item.important?.toString() ?? '';
+    importantController.text = item.complete?.toString() ?? '';
     timeController.text = item.time?.toLocal().toString() ?? '';
     additionalFields = Map<String, dynamic>.from(item.additionalFields!);
   }
@@ -36,7 +36,7 @@ class EditItemController extends GetxController {
         id: item.id,
         title: titleController.text,
         description: descriptionController.text,
-        important: importantController.text.isNotEmpty
+        complete: importantController.text.isNotEmpty
             ? bool.parse(importantController.text)
             : null,
         time: timeController.text.isNotEmpty

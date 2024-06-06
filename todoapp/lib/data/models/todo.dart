@@ -2,7 +2,7 @@ class Todo {
   String? id;
   String? title;
   String? description;
-  bool? important;
+  bool? complete;
   DateTime? time;
   Map<String, dynamic>? additionalFields;
 
@@ -10,7 +10,7 @@ class Todo {
     this.id,
     this.title,
     this.description,
-    this.important,
+    this.complete,
     this.time,
     this.additionalFields,
   });
@@ -20,7 +20,7 @@ class Todo {
       id: json['_id'],
       title: json['title'],
       description: json['description'],
-      important: json['important'],
+      complete: json['complete'],
       time: DateTime.parse(json['time']),
       additionalFields: json['additionalFields'] ?? {},
     );
@@ -31,7 +31,7 @@ class Todo {
       '_id': id,
       'title': title,
       'description': description,
-      'important': important,
+      'complete': complete,
       'time': time?.toIso8601String(),
       'additionalFields': additionalFields,
     };
